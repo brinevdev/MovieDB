@@ -4,6 +4,7 @@ $background-header: #fafafa;
 $background-main: #d1d1d1;
 $background-content: #aeaeae;
 $background-card: #252525;
+$grey: #333333;
 $green: #2fad68;
 $text-color:#e5e5e5;
 
@@ -40,7 +41,14 @@ a:hover{text-decoration: none;}
 ul li{list-style: none;}
 img{vertical-align: top;}
 h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
-
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
 html,body {
     height: 100%;
     font-family: 'Roboto';
@@ -140,7 +148,70 @@ html,body {
     transform: scale(1.05);
 }
 
+.navbar {
+    background-color: $background-card;
+    color: $text-color;
+    &__title {
+        background-color: $green;
+        padding: 15px 5px;
+        color: #fff;
+        font-weight: 700;
+        text-align: center;
+        font-size: 16px;
+        margin: -10px -15px 30px; 
+    }
+    &__subtitle {
+        font-size: 16px;
+        padding: 10px 5px;
+        color:$green;
+        background-color: $grey;
+    }
+    &__search input {
+        padding: 10px 5px;
+        font-size: 14px;
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    &__search form {
+        position: relative;
+    }
+    &__search button{
+        background-color: #fff;
+        position: absolute;
+        top: 5px;
+        right: 0px;
+    }
+    &__year input {
+        padding: 10px 5px;
+        font-size: 14px;
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    &__year form {
+        position: relative;
+    }
+    &__year button{
+        background-color: #fff;
+        position: absolute;
+        top: 5px;
+        right: 0px;
+    }
 
+    &__genre {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+    }
+}
+.genre__item {
+    padding: 10px 5px;
+    cursor: pointer;
+}
+.genre__item:hover {
+  background-color: $grey;
+}
 
 .footer {
     padding: 20px 15px;

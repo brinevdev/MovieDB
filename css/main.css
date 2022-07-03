@@ -71,6 +71,16 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 html, body {
   height: 100%;
   font-family: "Roboto";
@@ -152,6 +162,72 @@ html, body {
 .movie:hover {
   transition: transform 300ms;
   transform: scale(1.05);
+}
+
+.navbar {
+  background-color: #252525;
+  color: #e5e5e5;
+}
+.navbar__title {
+  background-color: #2fad68;
+  padding: 15px 5px;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  font-size: 16px;
+  margin: -10px -15px 30px;
+}
+.navbar__subtitle {
+  font-size: 16px;
+  padding: 10px 5px;
+  color: #2fad68;
+  background-color: #333333;
+}
+.navbar__search input {
+  padding: 10px 5px;
+  font-size: 14px;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.navbar__search form {
+  position: relative;
+}
+.navbar__search button {
+  background-color: #fff;
+  position: absolute;
+  top: 5px;
+  right: 0px;
+}
+.navbar__year input {
+  padding: 10px 5px;
+  font-size: 14px;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.navbar__year form {
+  position: relative;
+}
+.navbar__year button {
+  background-color: #fff;
+  position: absolute;
+  top: 5px;
+  right: 0px;
+}
+.navbar__genre {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+}
+
+.genre__item {
+  padding: 10px 5px;
+  cursor: pointer;
+}
+
+.genre__item:hover {
+  background-color: #333333;
 }
 
 .footer {
