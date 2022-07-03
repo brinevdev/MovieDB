@@ -1,1 +1,163 @@
-/*# sourceMappingURL=main.css.map */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 12px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+html, body {
+  height: 100%;
+  font-family: "Roboto";
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.main {
+  flex: 1 1 auto;
+  background-color: #d1d1d1;
+}
+
+.header {
+  display: flex;
+  padding: 18px 15px;
+  background-color: #fafafa;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.movies {
+  background-color: #d1d1d1;
+}
+.movies__container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  padding: 30px 15px;
+  background-color: #aeaeae;
+}
+.movies__items {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  flex: 0 1 80%;
+}
+.movies__navbar {
+  padding: 10px 15px;
+  flex: 0 1 20%;
+}
+
+.movie {
+  flex: 0 1 30%;
+  color: #e5e5e5;
+  background-color: #252525;
+  font-size: 16px;
+}
+.movie__image {
+  display: block;
+}
+.movie__image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.movie__body {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px 15px;
+}
+.movie__title {
+  display: block;
+  color: inherit;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 20px;
+  text-align: start;
+}
+.movie:hover {
+  transition: transform 300ms;
+  transform: scale(1.05);
+}
+
+.footer {
+  padding: 20px 15px;
+  background-color: #2fad68;
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+}/*# sourceMappingURL=main.css.map */
