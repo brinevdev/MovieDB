@@ -131,6 +131,7 @@ html, body {
 }
 
 .movie {
+  position: relative;
   flex: 0 1 30%;
   color: #e5e5e5;
   background-color: #252525;
@@ -158,6 +159,15 @@ html, body {
   font-size: 22px;
   line-height: 20px;
   text-align: start;
+}
+.movie__rate {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  font-size: 20px;
+  color: #fff;
+  font-weight: bold;
+  background: #252525;
 }
 .movie:hover {
   transition: transform 300ms;

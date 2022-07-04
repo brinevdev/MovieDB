@@ -16,6 +16,7 @@ function getGenre(genresId){
 }
 
 function showMovie(movies) {
+    console.log(movies);
     movieContainer.innerHTML = '';
     for (const movie of movies.results) {
         movieContainer.insertAdjacentHTML('beforeend',`
@@ -27,6 +28,7 @@ function showMovie(movies) {
             <a href=' ' class="movie__title">${movie.title}</a>
             <div class="movie__genre"><span class="bold">Жанр:</span> ${getGenre(movie.genre_ids)}</div> 
             <div class="movie__year"><span class="bold">Дата премьеры:</span> ${movie.release_date}</div>
+            <div class="movie__rate">${movie.vote_average}</div>
         </div>
     </div>
         `)
