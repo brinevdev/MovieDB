@@ -235,8 +235,10 @@ html, body {
   padding: 10px 5px;
   cursor: pointer;
 }
-
 .genre__item:hover {
+  background-color: #333333;
+}
+.genre__item_active {
   background-color: #333333;
 }
 

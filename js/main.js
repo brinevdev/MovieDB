@@ -1,6 +1,7 @@
 const APIKEY = 'e0ec4c232335ffc08d42a11556a54ec5';
 const IMAGEPATH = 'https://image.tmdb.org/t/p/w500/'
 const movieContainer = document.querySelector('.movies__items');
+const genresContainer = document.querySelector('.navbar__genre');
 fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${APIKEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&language=ru-RU&`)
     .then(response => response.json())
     .then(movies => showMovie(movies));
@@ -33,4 +34,20 @@ function showMovie(movies) {
     </div>
         `)
     }
+  }
+
+  genresContainer.addEventListener('click',(e)=>{
+    const genre = e.target;
+    const genres = document.querySelectorAll('.genre__item');
+    genres.forEach(genre => {
+      genre.classList.remove('genre__item_active');  
+    });
+    genre.classList.toggle('genre__item_active');
+    filterByGenre(genre.dataset.genreId);
+  }) 
+
+  function filterByGenre(genreId){
+    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${APIKEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&language=ru-RU&with_genres=${genreId}`)
+    .then(response => response.json())
+    .then(movies => showMovie(movies));
   }
