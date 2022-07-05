@@ -58,11 +58,11 @@ function showMovie(movies) {
     const year = document.querySelector('#year-filter-input').value
     console.log(year);
     if (year){
-        filterByGenre(year);
+        filterByYear(year);
     }
 })
 
-  function filterByGenre(year){
+  function filterByYear(year){
     fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${APIKEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&language=ru-RU&primary_release_year=${year}`)
     .then(response => response.json())
     .then(movies => showMovie(movies));
