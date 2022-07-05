@@ -2,6 +2,7 @@ const APIKEY = 'e0ec4c232335ffc08d42a11556a54ec5';
 const IMAGEPATH = 'https://image.tmdb.org/t/p/w500/'
 const movieContainer = document.querySelector('.movies__items');
 const genresContainer = document.querySelector('.navbar__genre');
+const filterByYearBtn = document.querySelector('#year-filter-btn');
 fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${APIKEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&language=ru-RU&`)
     .then(response => response.json())
     .then(movies => showMovie(movies));
@@ -48,6 +49,21 @@ function showMovie(movies) {
 
   function filterByGenre(genreId){
     fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${APIKEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&language=ru-RU&with_genres=${genreId}`)
+    .then(response => response.json())
+    .then(movies => showMovie(movies));
+  }
+
+  filterByYearBtn.addEventListener('click',(e)=>{
+    e.preventDefault();
+    const year = document.querySelector('#year-filter-input').value
+    console.log(year);
+    if (year){
+        filterByGenre(year);
+    }
+})
+
+  function filterByGenre(year){
+    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${APIKEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&language=ru-RU&primary_release_year=${year}`)
     .then(response => response.json())
     .then(movies => showMovie(movies));
   }
