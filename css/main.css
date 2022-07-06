@@ -116,6 +116,7 @@ html, body {
   display: flex;
   padding: 30px 15px;
   background-color: #aeaeae;
+  position: relative;
 }
 .movies__items {
   display: flex;
@@ -188,7 +189,6 @@ html, body {
   margin: -10px -15px 30px;
 }
 .navbar__subtitle {
-  font-size: 16px;
   padding: 10px 5px;
   color: #2fad68;
   background-color: #333333;
@@ -240,6 +240,31 @@ html, body {
 }
 .genre__item_active {
   background-color: #333333;
+}
+
+.search-alert {
+  transform: scale(0);
+  transition: 400ms;
+  position: absolute;
+  z-index: 2;
+  background-color: #a5260a;
+  color: #fff;
+  padding: 10px 15px;
+  margin: 10px 0;
+  border-radius: 4px;
+  width: 900px;
+  margin-right: 10px;
+  height: 200px;
+}
+.search-alert__body {
+  font-size: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.search-alert__return {
+  text-align: center;
 }
 
 .footer {

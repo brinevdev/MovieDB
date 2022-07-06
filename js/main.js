@@ -3,10 +3,15 @@ const IMAGEPATH = 'https://image.tmdb.org/t/p/w500/'
 const movieContainer = document.querySelector('.movies__items');
 const genresContainer = document.querySelector('.navbar__genre');
 const filterByYearBtn = document.querySelector('#year-filter-btn');
-fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${APIKEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&language=ru-RU&`)
+const searchBtn = document.querySelector('#search-btn');
+const searchReturnBtn = document.querySelector('.search-alert')
+
+function initialSearch() {
+  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${APIKEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&language=ru-RU&`)
     .then(response => response.json())
     .then(movies => showMovie(movies));
-
+}
+initialSearch()
 
 function getGenre(genresId){
    const genres = [{"id":28,"name":"боевик"},{"id":12,"name":"приключения"},{"id":16,"name":"мультфильм"},{"id":35,"name":"комедия"},{"id":80,"name":"криминал"},{"id":99,"name":"документальный"},{"id":18,"name":"драма"},{"id":10751,"name":"семейный"},{"id":14,"name":"фэнтези"},{"id":36,"name":"история"},{"id":27,"name":"ужасы"},{"id":10402,"name":"музыка"},{"id":9648,"name":"детектив"},{"id":10749,"name":"мелодрама"},{"id":878,"name":"фантастика"},{"id":10770,"name":"телевизионный фильм"},{"id":53,"name":"триллер"},{"id":10752,"name":"военный"},{"id":37,"name":"вестерн"}]
@@ -67,3 +72,30 @@ function showMovie(movies) {
     .then(response => response.json())
     .then(movies => showMovie(movies));
   }
+
+  searchBtn.addEventListener('click',(e)=>{
+    e.preventDefault();
+    const filmTitle = document.querySelector('#search-input').value;
+    if (filmTitle){
+        searchByTitle(filmTitle);
+    }
+  })
+
+function searchByTitle(title){
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${APIKEY}&language=ru-RU&query=${title}`)
+    .then(response => response.json())
+    .then(movies => {
+        if (movies.results.length===0){
+            movieContainer.innerHTML = '';
+            document.querySelector('.search-alert').style.transform = 'scale(1)'
+        } else {
+            document.querySelector('.search-alert').style.transform = 'scale(0)'
+            showMovie(movies)
+        }
+    });
+  }
+
+  searchReturnBtn.addEventListener('click',()=>{
+    document.querySelector('.search-alert').style.transform = 'scale(0)'
+    initialSearch();
+  })

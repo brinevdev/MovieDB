@@ -46,6 +46,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 input[type=number] {
   -moz-appearance: textfield;
 }
@@ -78,6 +79,7 @@ html,body {
         display: flex;
         padding: 30px 15px;
         background-color: $background-content;
+        position: relative;
 	}
 
 	&__items {
@@ -170,7 +172,7 @@ html,body {
         margin: -10px -15px 30px; 
     }
     &__subtitle {
-        font-size: 16px;
+     //   font-size: 16px;
         padding: 10px 5px;
         color:$green;
         background-color: $grey;
@@ -227,6 +229,33 @@ html,body {
     }
     
 }
+
+.search-alert {
+    transform: scale(0);
+    transition: 400ms;
+    position: absolute;
+    z-index: 2;
+    background-color: #a5260a;
+    color: #fff;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+    width: 900px;
+    margin-right: 10px;
+    height: 200px;
+    &__body {
+        font-size: 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+    &__return {
+        text-align: center;
+    }
+}
+
+
 
 .footer {
     padding: 20px 15px;
