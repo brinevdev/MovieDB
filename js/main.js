@@ -18,6 +18,8 @@ initialSearch()
 
 
 
+
+
 function getGenre(genresId){
    const genres = [{"id":28,"name":"боевик"},{"id":12,"name":"приключения"},{"id":16,"name":"мультфильм"},{"id":35,"name":"комедия"},{"id":80,"name":"криминал"},{"id":99,"name":"документальный"},{"id":18,"name":"драма"},{"id":10751,"name":"семейный"},{"id":14,"name":"фэнтези"},{"id":36,"name":"история"},{"id":27,"name":"ужасы"},{"id":10402,"name":"музыка"},{"id":9648,"name":"детектив"},{"id":10749,"name":"мелодрама"},{"id":878,"name":"фантастика"},{"id":10770,"name":"телевизионный фильм"},{"id":53,"name":"триллер"},{"id":10752,"name":"военный"},{"id":37,"name":"вестерн"}]
    let genresAll = [];
@@ -28,7 +30,6 @@ function getGenre(genresId){
 }
 
 function showMovie(movies) {
-    console.log(movies);
     movieContainer.innerHTML = '';
     for (const movie of movies.results) {
         movieContainer.insertAdjacentHTML('beforeend',`
@@ -116,7 +117,6 @@ function searchByTitle(title){
     .then(response => response.json())
     .then(movie => {
       movieContainer.innerHTML = '';
-      console.log(movie);
       movieContainer.insertAdjacentHTML('beforeend',`
       <div class="movie-description">
       <div class="movie-description__title">
@@ -142,10 +142,42 @@ function searchByTitle(title){
           </div>
       </div>
       </div>
-        `)
+        `);
+        showActors(movie.id);
     }
     );
+    }  
+  }
+
+
+  function showActors(movieId){
+    fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${APIKEY}&language=ru-RU`)
+    .then(response => response.json())
+    .then(result => {
+    const movieDescription = document.querySelector('.movie-description');
+    movieDescription.insertAdjacentHTML("beforeend",`
+    <div class="movie-decription__actors actors">
+      <div class="actors__title">В ролях</div>
+      <div class="actors__items"></div>
+    </div>
+    ` );
+    const actorsContainer = document.querySelector('.actors__items');
+    let actors = result.cast;
+    for (let i=0;i<10;i++){ 
+      actorsContainer.insertAdjacentHTML('beforeend',`
+      <div class="actors__item actor">
+        <div class="actor__avatar">
+          <img src="${actors[i].profile_path ? 'https://image.tmdb.org/t/p/w200/'+ actors[i].profile_path : 'https://dthezntil550i.cloudfront.net/kg/latest/kg1802132010216500004834729/1280_960/557d644f-12f3-49e1-bb66-23c16400540d.png'}" alt="">
+        </div>
+      <div class="actor__info">
+          <div class="actor__name">
+             <span class='bold'>ФИО: </span> <span class='green-text'>${actors[i].name}</span>
+          </div>
+          <div class="actor__role">
+          <span class='bold'> Роль:</span> <span class='green-text'> ${actors[i].character}</span>
+          </div>
+      </div>
+    </div>`)
     }
-   
-    
+    })
   }

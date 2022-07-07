@@ -312,6 +312,52 @@ html, body {
   background-color: #252525;
 }
 
+.actors {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 15px;
+}
+.actors__title {
+  text-align: center;
+  color: #fff;
+  font-size: 36px;
+  line-height: 30px;
+  font-weight: 700;
+  padding: 10px 20px;
+  margin-bottom: 40px;
+}
+.actors__items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 30px;
+  -moz-column-gap: 80px;
+       column-gap: 80px;
+}
+.actors__item {
+  display: flex;
+}
+
+.actor__avatar {
+  margin-right: 20px;
+}
+.actor__avatar img {
+  height: 200px;
+}
+.actor__info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.actor__name {
+  font-size: 18px;
+  color: #e5e5e5;
+}
+.actor__role {
+  font-size: 18px;
+  color: #e5e5e5;
+}
+
 .footer {
   padding: 20px 15px;
   background-color: #2fad68;
