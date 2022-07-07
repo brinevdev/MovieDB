@@ -107,6 +107,10 @@ html, body {
   font-weight: 700;
 }
 
+.green-text {
+  color: #2fad68;
+}
+
 .movies {
   background-color: #d1d1d1;
 }
@@ -185,7 +189,7 @@ html, body {
   color: #fff;
   font-weight: 700;
   text-align: center;
-  font-size: 16px;
+  font-size: 20px;
   margin: -10px -15px 30px;
 }
 .navbar__subtitle {
@@ -265,6 +269,47 @@ html, body {
 }
 .search-alert__return {
   text-align: center;
+}
+
+.movie-description {
+  padding: 0px 20px 20px;
+  background-color: #2f2f2f;
+}
+.movie-description__title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  background-color: #1c1c1c;
+  margin-bottom: 30px;
+  padding: 15px 10px;
+}
+.movie-description__overwiev {
+  color: #e5e5e5;
+  font-size: 16px;
+  line-height: 24px;
+  padding-left: 30px;
+}
+.movie-description__body {
+  display: flex;
+  flex-direction: column;
+}
+.movie-description__poster {
+  display: flex;
+  padding-bottom: 20px;
+}
+.info-movie {
+  padding: 0px 15px 20px;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  font-size: 20px;
+}
+.info-movie * {
+  padding: 10px 5px;
+}
+
+.info-movie div:nth-child(odd) {
+  background-color: #252525;
 }
 
 .footer {

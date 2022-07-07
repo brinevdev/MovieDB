@@ -9,9 +9,14 @@ const searchReturnBtn = document.querySelector('.search-alert')
 function initialSearch() {
   fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${APIKEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&language=ru-RU&`)
     .then(response => response.json())
-    .then(movies => showMovie(movies));
+    .then(movies => showMovie(movies))
+    .then(()=>{
+      
+    })
 }
 initialSearch()
+
+
 
 function getGenre(genresId){
    const genres = [{"id":28,"name":"боевик"},{"id":12,"name":"приключения"},{"id":16,"name":"мультфильм"},{"id":35,"name":"комедия"},{"id":80,"name":"криминал"},{"id":99,"name":"документальный"},{"id":18,"name":"драма"},{"id":10751,"name":"семейный"},{"id":14,"name":"фэнтези"},{"id":36,"name":"история"},{"id":27,"name":"ужасы"},{"id":10402,"name":"музыка"},{"id":9648,"name":"детектив"},{"id":10749,"name":"мелодрама"},{"id":878,"name":"фантастика"},{"id":10770,"name":"телевизионный фильм"},{"id":53,"name":"триллер"},{"id":10752,"name":"военный"},{"id":37,"name":"вестерн"}]
@@ -27,12 +32,12 @@ function showMovie(movies) {
     movieContainer.innerHTML = '';
     for (const movie of movies.results) {
         movieContainer.insertAdjacentHTML('beforeend',`
-        <div class="movies__item movie">
+        <div class="movies__item movie" data-movie-id="${movie.id}">
         <a href=' ' class="movie__image">
             <img src='${IMAGEPATH}${movie.poster_path}' alt="${movie.title}" >
         </a>
         <div class="movie__body">
-            <a href=' ' class="movie__title">${movie.title}</a>
+            <a href='' class="movie__title">${movie.title}</a>
             <div class="movie__genre"><span class="bold">Жанр:</span> ${getGenre(movie.genre_ids)}</div> 
             <div class="movie__year"><span class="bold">Дата премьеры:</span> ${movie.release_date}</div>
             <div class="movie__rate">${movie.vote_average}</div>
@@ -40,6 +45,8 @@ function showMovie(movies) {
     </div>
         `)
     }
+      const movie = document.querySelectorAll('.movie');
+      movie.forEach((item)=>item.addEventListener('click',showMovieDescription));
   }
 
   genresContainer.addEventListener('click',(e)=>{
@@ -99,3 +106,46 @@ function searchByTitle(title){
     document.querySelector('.search-alert').style.transform = 'scale(0)'
     initialSearch();
   })
+ 
+  function showMovieDescription(e,id) {
+    e.preventDefault();
+    if (e.target.tagName === 'IMG' || e.target.classList.contains('movie__title')){
+      const movie = e.target.closest('.movie')
+      const movieId = movie.dataset.movieId;
+     fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${APIKEY}&language=ru-RU`)
+    .then(response => response.json())
+    .then(movie => {
+      movieContainer.innerHTML = '';
+      console.log(movie);
+      movieContainer.insertAdjacentHTML('beforeend',`
+      <div class="movie-description">
+      <div class="movie-description__title">
+          ${movie.title}
+      </div>
+      <div class="movie-description__body">
+          <div class="movie-description__poster">
+              <div class="movie-desription__image"> 
+                <img src="https://image.tmdb.org/t/p/w500/${movie.backdrop_path}" alt="">
+              </div>
+              <div class="movie-description__overwiev">
+                 ${movie.overview || 'Описание для фильма отсутствует'}
+              </div>
+          </div>
+          <div class="movie-descrption__info info-movie">
+          <div class="info-movie__status"><span class="bold">Рейтинг:</span><span class="green-text">${movie.vote_average || 'Неизвестен'}</span></div>
+            <div class="info-movie__budget"><span class="bold">Бюджет: </span> <span class="green-text">${movie.budget ? movie.budget +' $' : 'Неизвестен'}</span> </div>
+            <div class="info-movie__revenue"><span class="bold">Сборы: </span> <span class="green-text">${movie.revenue ? movie.revenue +' $' : 'Неизвестны'}</span> </div>
+            <div class="info-movie__genre"><span class="bold">Жанры: </span><span class="green-text">${movie.genres.map((genre)=>genre.name).join(', ')}</span></div>
+            <div class="info-movie__company"><span class="bold">Киностудии: </span><span class="green-text">${movie.production_companies.map((company)=>company.name).join(', ')}</span></div>
+            <div class="info-movie__runtime"><span class="bold">Продложительность: </span><span class="green-text">${movie.runtime || 'Неизвестна'} мин. </span></div>
+            <div class="info-movie__release-date"><span class="bold">Дата релиза:</span><span class="green-text">${movie.release_date || 'Неизвестна'}</span></div>
+          </div>
+      </div>
+      </div>
+        `)
+    }
+    );
+    }
+   
+    
+  }
