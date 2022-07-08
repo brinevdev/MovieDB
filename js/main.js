@@ -1,20 +1,19 @@
 const APIKEY = 'e0ec4c232335ffc08d42a11556a54ec5';
 const IMAGEPATH = 'https://image.tmdb.org/t/p/w500/'
+const defaultQuery = `https://api.themoviedb.org/3/discover/movie?api_key=${APIKEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&language=ru-RU&primary_release_year=2021`;
 const movieContainer = document.querySelector('.movies__items');
 const genresContainer = document.querySelector('.navbar__genre');
 const filterByYearBtn = document.querySelector('#year-filter-btn');
 const searchBtn = document.querySelector('#search-btn');
-const searchReturnBtn = document.querySelector('.search-alert')
+const searchReturnBtn = document.querySelector('.search-alert');
+const menu = document.querySelector('.menu__list');
 
-function initialSearch() {
-  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${APIKEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&language=ru-RU&`)
+function show(query) {
+  fetch(query)
     .then(response => response.json())
     .then(movies => showMovie(movies))
-    .then(()=>{
-      
-    })
 }
-initialSearch()
+show(defaultQuery);
 
 
 
@@ -181,3 +180,29 @@ function searchByTitle(title){
     }
     })
   }
+
+  function menuHandler(e){
+    e.preventDefault();
+    if (e.target.classList.contains('menu__link')) {
+      const link = e.target.dataset.menu;
+      let query;
+      switch (link) {
+        case 'main':
+          show(defaultQuery);
+          break;
+        case 'newReleases':
+          query = `https://api.themoviedb.org/3/movie/now_playing?api_key=${APIKEY}&language=ru-RU&page=1`
+          show(query);
+          break;
+        case 'upcoming':
+          query =`https://api.themoviedb.org/3/movie/upcoming?api_key=${APIKEY}&language=ru-RU&page=1`
+          show(query);
+          break;
+        default:
+          show(defaultQuery);
+          break
+      }
+    }
+  }
+
+  menu.addEventListener('click',menuHandler);
