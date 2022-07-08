@@ -98,9 +98,30 @@ html, body {
 }
 
 .header {
-  display: flex;
   padding: 18px 15px;
-  background-color: #fafafa;
+  background-color: #2fad68;
+}
+.header__container {
+  width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 15px;
+}
+.menu__list {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 15px;
+}
+.menu__link {
+  font-size: 18px;
+  color: #fff;
+}
+.menu__link:hover {
+  color: rgb(238, 226, 226);
 }
 
 .bold {

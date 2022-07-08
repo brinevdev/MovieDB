@@ -65,11 +65,42 @@ html,body {
 	flex: 1 1 auto;
     background-color: $background-main;
 }
+
 .header {
-    display: flex;
     padding: 18px 15px;
-    background-color: $background-header;
+    background-color: $green;
+    &__container {
+        width: 1200px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0px 15px;
+    }
+    &__logo {
+    }
+
+    &__menu {
+    }
 }
+.menu {
+    &__list {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 15px;
+    }
+
+    &__link {
+        font-size: 18px;
+        color: #fff;
+    }
+    &__link:hover {
+       color: rgb(238, 226, 226);
+    }
+}
+
 .bold {
     font-weight: 700;
 }
