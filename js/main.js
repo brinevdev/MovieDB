@@ -27,9 +27,12 @@ let query = {
       case 'upcoming':
         this.query = `https://api.themoviedb.org/3/movie/upcoming?api_key=${APIKEY}`
         break;
-        case 'newReleases':
+      case 'newReleases':
         this.query = `https://api.themoviedb.org/3/movie/now_playing?api_key=${APIKEY}`
         break
+      case 'top100':
+        this.query = `https://api.themoviedb.org/3/movie/top_rated?api_key=${APIKEY}`
+        break;
     }
     let defaultParams = this.getDefaultParams().map((param)=>`${param.name}=${param.value}`).join('&');
     this.query = this.query + '&' + defaultParams;
@@ -260,6 +263,9 @@ function searchByTitle(title){
         case 'upcoming':
           query.type = 'upcoming';
           break;
+        case 'top100':
+          query.type = 'top100'
+          break
         default:
           query.type = 'main'
           break
