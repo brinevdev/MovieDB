@@ -121,7 +121,7 @@ html, body {
   color: #fff;
 }
 .menu__link:hover {
-  color: rgb(238, 226, 226);
+  color: rgb(251, 255, 11);
 }
 
 .bold {
@@ -139,7 +139,7 @@ html, body {
   max-width: 1200px;
   margin: auto;
   display: flex;
-  padding: 30px 15px;
+  padding: 30px 15px 10px;
   background-color: #aeaeae;
   position: relative;
 }
@@ -150,6 +150,7 @@ html, body {
   flex-wrap: wrap;
   gap: 30px;
   flex: 0 1 80%;
+  margin-bottom: 20px;
 }
 .movies__navbar {
   padding: 10px 15px;
@@ -377,6 +378,31 @@ html, body {
 .actor__role {
   font-size: 18px;
   color: #e5e5e5;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 15px;
+}
+.pagination__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  background-color: #fff;
+  width: 30px;
+  height: 30px;
+  color: #000;
+  cursor: pointer;
+}
+.pagination__item:hover {
+  background-color: #f5f5f5;
+}
+.pagination__item.active {
+  background-color: #f5f5f5;
 }
 
 .footer {

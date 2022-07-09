@@ -2,11 +2,50 @@ const APIKEY = 'e0ec4c232335ffc08d42a11556a54ec5';
 const IMAGEPATH = 'https://image.tmdb.org/t/p/w500/'
 const defaultQuery = `https://api.themoviedb.org/3/discover/movie?api_key=${APIKEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&language=ru-RU&primary_release_year=2021`;
 const movieContainer = document.querySelector('.movies__items');
+const movieBody = document.querySelector('.movies__body');
 const genresContainer = document.querySelector('.navbar__genre');
 const filterByYearBtn = document.querySelector('#year-filter-btn');
 const searchBtn = document.querySelector('#search-btn');
 const searchReturnBtn = document.querySelector('.search-alert');
 const menu = document.querySelector('.menu__list');
+let page = 1;
+let query = {
+  type: 'main',
+  query: '',
+  page: 1,
+  filters: [
+
+  ],
+  getDefaultParams: function(){ 
+    return [{name:'page',value: this.page || 1,},{name:'language',value:'ru-RU',}]
+  },
+  getQuery: function(params) {
+    switch(this.type) {
+      case 'main' :
+        this.query = `https://api.themoviedb.org/3/discover/movie?api_key=${APIKEY}`
+        break;
+      case 'upcoming':
+        this.query = `https://api.themoviedb.org/3/movie/upcoming?api_key=${APIKEY}`
+        break;
+        case 'newReleases':
+        this.query = `https://api.themoviedb.org/3/movie/now_playing?api_key=${APIKEY}`
+        break
+    }
+    let defaultParams = this.getDefaultParams().map((param)=>`${param.name}=${param.value}`).join('&');
+    this.query = this.query + '&' + defaultParams;
+
+    if (this.filters) {
+      let filters = this.filters.map((param)=>`${param.name}=${param.value}`).join('&');
+      this.query = this.query + '&' + filters;
+    }
+    if(params){
+      let queryParams = params.map((param)=>`${param.name}=${param.value}`).join('&');
+      this.query = this.query + '&' + queryParams;
+    }
+
+    return this.query
+    }
+  }
 
 function show(query) {
   fetch(query)
@@ -15,7 +54,22 @@ function show(query) {
 }
 show(defaultQuery);
 
-
+function showPagination() {
+  movieBody.insertAdjacentHTML('beforeend',`
+  <div class="pagination">
+    <div class="pagination__item" data-page="1">1</div>
+    <div class="pagination__item" data-page="2">2</div>
+    <div class="pagination__item" data-page="3">3</div>
+    <div class="pagination__item" data-page="4">4</div>
+    <div class="pagination__item" data-page="5">5</div>
+    <div class="pagination__item" data-page="6">6</div>
+    <div class="pagination__item" data-page="7">7</div>
+    <div class="pagination__item" data-page="8">8</div>
+    <div class="pagination__item" data-page="9">9</div>
+    <div class="pagination__item" data-page="10">10</div>
+  </div>
+`);
+}
 
 
 
@@ -29,22 +83,26 @@ function getGenre(genresId){
 }
 
 function showMovie(movies) {
-    movieContainer.innerHTML = '';
+    movieBody.innerHTML = `<div class="movies__items"> </div>`;
+    const movieContainer = document.querySelector('.movies__items');
     for (const movie of movies.results) {
         movieContainer.insertAdjacentHTML('beforeend',`
-        <div class="movies__item movie" data-movie-id="${movie.id}">
-        <a href=' ' class="movie__image">
-            <img src='${IMAGEPATH}${movie.poster_path}' alt="${movie.title}" >
-        </a>
-        <div class="movie__body">
-            <a href='' class="movie__title">${movie.title}</a>
-            <div class="movie__genre"><span class="bold">Жанр:</span> ${getGenre(movie.genre_ids)}</div> 
-            <div class="movie__year"><span class="bold">Дата премьеры:</span> ${movie.release_date}</div>
-            <div class="movie__rate">${movie.vote_average}</div>
-        </div>
-    </div>
+          <div class="movies__item movie" data-movie-id="${movie.id}">
+          <a href=' ' class="movie__image">
+              <img src='${IMAGEPATH}${movie.poster_path}' alt="${movie.title}" >
+          </a>
+          <div class="movie__body">
+              <a href='' class="movie__title">${movie.title}</a>
+              <div class="movie__genre"><span class="bold">Жанр:</span> ${getGenre(movie.genre_ids)}</div> 
+              <div class="movie__year"><span class="bold">Дата премьеры:</span> ${movie.release_date}</div>
+              <div class="movie__rate">${movie.vote_average}</div>
+          </div>
+          </div>
         `)
     }
+      showPagination();
+      window.scrollTo(0,0);
+      document.querySelector('.pagination').addEventListener('click',paginationHandler);
       const movie = document.querySelectorAll('.movie');
       movie.forEach((item)=>item.addEventListener('click',showMovieDescription));
   }
@@ -60,7 +118,9 @@ function showMovie(movies) {
   }) 
 
   function filterByGenre(genreId){
-    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${APIKEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&language=ru-RU&with_genres=${genreId}`)
+    query.page = 1;
+    query.filters.push({name: 'with_genres',value: genreId})
+    fetch(query.getQuery())
     .then(response => response.json())
     .then(movies => showMovie(movies));
   }
@@ -75,7 +135,9 @@ function showMovie(movies) {
 })
 
   function filterByYear(year){
-    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${APIKEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&language=ru-RU&primary_release_year=${year}`)
+    query.page = 1;
+    query.filters.push({name: 'primary_release_year',value: year})
+    fetch(query.getQuery())
     .then(response => response.json())
     .then(movies => showMovie(movies));
   }
@@ -115,8 +177,8 @@ function searchByTitle(title){
      fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${APIKEY}&language=ru-RU`)
     .then(response => response.json())
     .then(movie => {
-      movieContainer.innerHTML = '';
-      movieContainer.insertAdjacentHTML('beforeend',`
+      movieBody.innerHTML = '';
+      movieBody.insertAdjacentHTML('beforeend',`
       <div class="movie-description">
       <div class="movie-description__title">
           ${movie.title}
@@ -185,24 +247,34 @@ function searchByTitle(title){
     e.preventDefault();
     if (e.target.classList.contains('menu__link')) {
       const link = e.target.dataset.menu;
-      let query;
       switch (link) {
         case 'main':
-          show(defaultQuery);
+          query.type = 'main';
           break;
         case 'newReleases':
-          query = `https://api.themoviedb.org/3/movie/now_playing?api_key=${APIKEY}&language=ru-RU&page=1`
-          show(query);
+          query.type = 'newReleases';
           break;
         case 'upcoming':
-          query =`https://api.themoviedb.org/3/movie/upcoming?api_key=${APIKEY}&language=ru-RU&page=1`
-          show(query);
+          query.type = 'upcoming';
           break;
         default:
-          show(defaultQuery);
+          query.type = 'main'
           break
       }
+      query.page = 1;
+      query.filters =[];
+      show(query.getQuery());
     }
   }
 
   menu.addEventListener('click',menuHandler);
+
+  function paginationHandler(e){
+    if (e.target.classList.contains('pagination__item')) {
+      page = e.target.dataset.page;
+      console.log('page',page);
+      query.page = page;
+      show(query.getQuery());
+  }
+  }
+
