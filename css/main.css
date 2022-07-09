@@ -123,6 +123,9 @@ html, body {
 .menu__link:hover {
   color: rgb(251, 255, 11);
 }
+.menu__link.active {
+  color: rgb(251, 255, 11);
+}
 
 .bold {
   font-weight: 700;

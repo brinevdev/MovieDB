@@ -99,6 +99,9 @@ html,body {
     &__link:hover {
        color: rgb(251, 255, 11);
     }
+    &__link.active {
+        color: rgb(251, 255, 11);
+     }
 }
 
 .bold {

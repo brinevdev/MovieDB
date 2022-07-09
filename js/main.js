@@ -246,6 +246,9 @@ function searchByTitle(title){
   function menuHandler(e){
     e.preventDefault();
     if (e.target.classList.contains('menu__link')) {
+      const links = document.querySelectorAll('.menu__link');
+      links.forEach((link)=>link.classList.remove('active'));
+      e.target.classList.toggle('active');
       const link = e.target.dataset.menu;
       switch (link) {
         case 'main':
