@@ -102,7 +102,7 @@ html, body {
   background-color: #2fad68;
 }
 .header__container {
-  width: 1200px;
+  max-width: 1200px;
   margin: auto;
   display: flex;
   align-items: center;
@@ -149,7 +149,7 @@ html, body {
 .movies__items {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   gap: 30px;
   flex: 0 1 80%;
@@ -198,6 +198,9 @@ html, body {
   color: #fff;
   font-weight: bold;
   background: #252525;
+}
+.movie__year {
+  white-space: nowrap;
 }
 .movie:hover {
   transition: transform 300ms;
@@ -271,6 +274,37 @@ html, body {
   background-color: #333333;
 }
 
+@media (max-width: 1200px) {
+  .movies__items {
+    gap: 20px;
+  }
+}
+@media (max-width: 996px) {
+  .movies__items {
+    justify-content: space-evenly;
+  }
+  .movie {
+    flex: 0 1 40%;
+  }
+}
+@media (max-width: 768px) {
+  .movies__container {
+    flex-direction: column-reverse;
+    padding: 20px 0px 10px;
+    gap: 20px;
+  }
+  .movie:hover {
+    transform: scale(1);
+  }
+  .navbar {
+    flex: 0 1 100%;
+  }
+}
+@media (max-width: 576px) {
+  .movie {
+    flex: 0 1 100%;
+  }
+}
 .search-alert {
   transform: scale(0);
   transition: 400ms;
@@ -308,7 +342,7 @@ html, body {
   margin-bottom: 30px;
   padding: 15px 10px;
 }
-.movie-description__overwiev {
+.movie-description__overview {
   color: #e5e5e5;
   font-size: 16px;
   line-height: 24px;
@@ -341,7 +375,6 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 15px;
 }
 .actors__title {
   text-align: center;
@@ -383,6 +416,37 @@ html, body {
   color: #e5e5e5;
 }
 
+@media (max-width: 996px) {
+  .movie-description__overview {
+    padding-top: 20px;
+    padding-left: 0;
+  }
+  .movie-description__poster {
+    flex-direction: column;
+  }
+  .movie-description__image img {
+    width: 100%;
+  }
+  .actors {
+    -moz-column-gap: 40px;
+         column-gap: 40px;
+  }
+}
+@media (max-width: 576px) {
+  .actors {
+    -moz-column-gap: 20px;
+         column-gap: 20px;
+  }
+}
+@media (max-width: 576px) {
+  .actors {
+    padding: 0;
+    align-items: start;
+  }
+  .actors__items {
+    grid-template-columns: 1fr;
+  }
+}
 .pagination {
   display: flex;
   justify-content: center;

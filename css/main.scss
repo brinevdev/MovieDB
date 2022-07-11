@@ -70,7 +70,7 @@ html,body {
     padding: 18px 15px;
     background-color: $green;
     &__container {
-        width: 1200px;
+        max-width: 1200px;
         margin: auto;
         display: flex;
         align-items: center;
@@ -124,7 +124,7 @@ html,body {
 	&__items {
 		display: flex;
         justify-content: flex-start;
-        align-items: center;
+        align-items: flex-start;
         flex-wrap: wrap;
         gap: 30px;
         flex: 0 1 80%;
@@ -189,6 +189,7 @@ html,body {
     }
 
     &__year {
+        white-space: nowrap;
     }
 
     &__producer {
@@ -268,6 +269,37 @@ html,body {
     }
     
 }
+@media(max-width:1200px) {
+    .movies__items {
+        gap: 20px;
+    }
+}
+@media(max-width:996px){
+    .movies__items {
+        justify-content: space-evenly;
+    }
+    .movie {
+        flex: 0 1 40%;
+    }
+}
+@media(max-width:768px){
+    .movies__container {
+        flex-direction: column-reverse;
+        padding: 20px 0px 10px;
+        gap: 20px;
+    }
+    .movie:hover {
+        transform: scale(1);
+    }
+    .navbar {
+        flex: 0 1 100%;
+    }
+}
+@media(max-width:576px){
+    .movie {
+        flex:0 1 100%;
+    }
+}
 
 .search-alert {
     transform: scale(0);
@@ -305,7 +337,7 @@ html,body {
             margin-bottom: 30px;
             padding: 15px 10px;
 		}
-		&__overwiev {
+		&__overview {
             color: $text-color;
             font-size: 16px;
             line-height: 24px;
@@ -322,6 +354,9 @@ html,body {
         &__info {
 		}
 }
+
+
+
 .info-movie {
         padding: 0px 15px 20px;
         display: flex;
@@ -364,7 +399,6 @@ html,body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px 15px;
     &__title {
         text-align: center;
         color: #fff;
@@ -411,6 +445,38 @@ html,body {
     }
 }
 
+
+@media(max-width:996px){
+    .movie-description {
+        &__overview {
+            padding-top: 20px;
+            padding-left: 0;
+        }
+        &__poster{
+            flex-direction: column;
+        }
+        &__image img {
+            width: 100%;
+        }
+    }
+    .actors {
+        column-gap: 40px;
+    }
+}
+@media(max-width:576px){
+    .actors {
+        column-gap: 20px;
+    }
+}
+@media(max-width:576px){
+  .actors{
+    padding: 0;
+    align-items: start;
+    &__items {
+        grid-template-columns: 1fr;
+      }
+  }
+}
 .pagination {
     display: flex;
     justify-content: center;

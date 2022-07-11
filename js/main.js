@@ -94,6 +94,7 @@ function menuHandler(e){
       }
       query.page = 1;
       query.filters =[];
+      document.querySelector('.navbar').style.display = 'block';
       show(query.getQuery());
     }
 }

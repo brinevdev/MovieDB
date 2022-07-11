@@ -32,6 +32,7 @@ export function showMovie(movies) {
   
   function showMovieDescription(e,id) {
     e.preventDefault();
+    document.querySelector('.navbar').style.display = 'none';
     if (e.target.tagName === 'IMG' || e.target.classList.contains('movie__title')){
       const movie = e.target.closest('.movie')
       const movieId = movie.dataset.movieId;
@@ -46,10 +47,10 @@ export function showMovie(movies) {
       </div>
       <div class="movie-description__body">
           <div class="movie-description__poster">
-              <div class="movie-desription__image"> 
+              <div class="movie-description__image"> 
                 <img src="https://image.tmdb.org/t/p/w500/${movie.backdrop_path}" alt="">
               </div>
-              <div class="movie-description__overwiev">
+              <div class="movie-description__overview">
                  ${movie.overview || 'Описание для фильма отсутствует'}
               </div>
           </div>
