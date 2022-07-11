@@ -109,6 +109,10 @@ html, body {
   justify-content: space-between;
   padding: 0px 15px;
 }
+.header__logo {
+  position: relative;
+  z-index: 12;
+}
 .menu__list {
   display: flex;
   gap: 32px;
@@ -126,7 +130,108 @@ html, body {
 .menu__link.active {
   color: rgb(251, 255, 11);
 }
+.menu__icon {
+  display: none;
+}
 
+@media (max-width: 1200px) {
+  .menu__list {
+    gap: 20px;
+  }
+}
+@media (max-width: 900px) {
+  .header {
+    position: fixed;
+    z-index: 20;
+    width: 100%;
+    margin-bottom: 116px;
+    padding: 0;
+  }
+  .main {
+    padding-top: 80px;
+  }
+  .menu {
+    position: fixed;
+    background-color: #aeaeae;
+    width: 100%;
+    height: 100%;
+    left: -130%;
+    transition: left 300ms;
+    z-index: 10;
+    top: 0;
+  }
+  .menu__list {
+    gap: 0px;
+  }
+  .menu::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #2fad68;
+    z-index: 11;
+    height: 80px;
+    width: 100%;
+  }
+  .menu.active {
+    left: 0;
+  }
+  .menu.active .menu__list {
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    padding-top: 160px;
+    gap: 32px;
+    left: -100%;
+    transition: 300ms;
+  }
+  .menu.active .menu__link {
+    color: #fff;
+    font-size: 26px;
+  }
+  .menu__icon {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 12;
+  }
+  .menu__icon::after,
+.menu__icon::before,
+.menu__icon span {
+    width: 100%;
+    height: 10%;
+    background-color: #1E313B;
+    position: absolute;
+    left: 0;
+  }
+  .menu__icon::after,
+.menu__icon::before {
+    content: "";
+  }
+  .menu__icon::after {
+    top: 0;
+  }
+  .menu__icon::before {
+    bottom: 0;
+  }
+  .menu__icon span {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  body.active .menu__icon::after {
+    top: 50%;
+    transform: rotate(45deg);
+  }
+  body.active .menu__icon::before {
+    top: 50%;
+    transform: rotate(-45deg);
+  }
+  body.active .menu__icon span {
+    display: none;
+  }
+}
 .bold {
   font-weight: 700;
 }

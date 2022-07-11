@@ -95,8 +95,19 @@ function menuHandler(e){
       query.page = 1;
       query.filters =[];
       document.querySelector('.navbar').style.display = 'block';
+      body.classList.toggle('active');
+      nav.classList.toggle('active');
       show(query.getQuery());
     }
 }
 
 
+const menuIcon = document.querySelector('.menu__icon');
+const nav = document.querySelector('.menu');
+const body = document.body;
+
+
+menuIcon.addEventListener('click',(e)=>{
+    body.classList.toggle('active');
+    nav.classList.toggle('active');
+});
