@@ -27,6 +27,7 @@ export function showMovie(movies) {
     }
       const movie = document.querySelectorAll('.movie');
       movie.forEach((item)=>item.addEventListener('click',showMovieDescription));
+      return movies
   }
 
   

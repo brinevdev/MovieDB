@@ -19,8 +19,8 @@ function show(query) {
   fetch(query)
     .then(response => response.json())
     .then(movies => showMovie(movies))
-    .then(()=>{
-      showPagination();
+    .then((movies)=>{
+      showPagination(movies);
       window.scrollTo(0,0);
       document.querySelector('.pagination').addEventListener('click',paginationHandler);
     })
