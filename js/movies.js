@@ -6,15 +6,15 @@ const movieBody = document.querySelector('.movies__body');
 const IMAGEPATH = 'https://image.tmdb.org/t/p/w500/'
 
 
-
 export function showMovie(movies) {
     movieBody.innerHTML = `<div class="movies__items"> </div>`;
     const movieContainer = document.querySelector('.movies__items');
     for (const movie of movies.results) {
+        const img =  movie.backdrop_path ? `${IMAGEPATH}${movie.poster_path}` : `./../images/movies/stockimage.jpg`;
         movieContainer.insertAdjacentHTML('beforeend',`
           <div class="movies__item movie" data-movie-id="${movie.id}">
           <a href=' ' class="movie__image">
-              <img src='${IMAGEPATH}${movie.poster_path}' alt="${movie.title}" >
+              <img src='${img}' alt="${movie.title}" >
           </a>
           <div class="movie__body">
               <a href='' class="movie__title">${movie.title}</a>
