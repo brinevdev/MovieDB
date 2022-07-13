@@ -20,7 +20,6 @@ export function showMovie(movies) {
               <a href='' class="movie__title">${movie.title}</a>
               <div class="movie__genre"><span class="bold">Жанр:</span> ${getGenre(movie.genre_ids)}</div> 
               <div class="movie__year"><span class="bold">Дата премьеры:</span> ${movie.release_date}</div>
-              <div class="movie__rate">${movie.vote_average}</div>
           </div>
           </div>
         `)
@@ -41,6 +40,7 @@ export function showMovie(movies) {
     .then(response => response.json())
     .then(movie => {
       movieBody.innerHTML = '';
+      movieBody.style.width = '100%';
       movieBody.insertAdjacentHTML('beforeend',`
       <div class="movie-description">
       <div class="movie-description__title">
