@@ -1,5 +1,6 @@
 import { query } from "./query.js";
 import { showMovie } from "./movies.js";
+const APIKEY = 'e0ec4c232335ffc08d42a11556a54ec5';
 
 export function getGenre(genresId){
     const genres = [{"id":28,"name":"боевик"},{"id":12,"name":"приключения"},{"id":16,"name":"мультфильм"},{"id":35,"name":"комедия"},{"id":80,"name":"криминал"},{"id":99,"name":"документальный"},{"id":18,"name":"драма"},{"id":10751,"name":"семейный"},{"id":14,"name":"фэнтези"},{"id":36,"name":"история"},{"id":27,"name":"ужасы"},{"id":10402,"name":"музыка"},{"id":9648,"name":"детектив"},{"id":10749,"name":"мелодрама"},{"id":878,"name":"фантастика"},{"id":10770,"name":"телевизионный фильм"},{"id":53,"name":"триллер"},{"id":10752,"name":"военный"},{"id":37,"name":"вестерн"}]
@@ -27,10 +28,10 @@ export function searchByTitle(title){
     .then(response => response.json())
     .then(movies => {
         if (movies.results.length===0){
-            movieContainer.innerHTML = '';
-            document.querySelector('.search-alert').style.transform = 'scale(1)'
+            document.querySelector('.movie__body').innerHTML = '';
+            document.querySelector('.search-alert').style.top= '50px'
         } else {
-            document.querySelector('.search-alert').style.transform = 'scale(0)'
+            document.querySelector('.search-alert').style.top= '-100%'
             showMovie(movies)
         }
     });

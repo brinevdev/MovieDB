@@ -113,6 +113,7 @@ html, body {
   position: relative;
   z-index: 12;
 }
+
 .menu__list {
   display: flex;
   gap: 32px;
@@ -307,6 +308,7 @@ html, body {
 .movie__year {
   white-space: nowrap;
 }
+
 .movie:hover {
   transition: transform 300ms;
   transform: scale(1.05);
@@ -411,8 +413,10 @@ html, body {
   }
 }
 .search-alert {
-  transform: scale(0);
-  transition: 400ms;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: top 450ms;
   position: absolute;
   z-index: 2;
   background-color: #a5260a;
@@ -420,12 +424,12 @@ html, body {
   padding: 10px 15px;
   margin: 10px 0;
   border-radius: 4px;
-  width: 900px;
+  width: 500px;
   margin-right: 10px;
   height: 200px;
 }
 .search-alert__body {
-  font-size: 28px;
+  font-size: 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -461,6 +465,7 @@ html, body {
   display: flex;
   padding-bottom: 20px;
 }
+
 .info-movie {
   padding: 0px 15px 20px;
   display: flex;
@@ -468,6 +473,7 @@ html, body {
   color: #fff;
   font-size: 20px;
 }
+
 .info-movie * {
   padding: 10px 5px;
 }

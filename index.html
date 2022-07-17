@@ -31,51 +31,6 @@
         <div class="movies">
             <div class="movies__container">
                 <div class="movies__body">
-                    <div class="movies__items">
-                        <div class="movie-description">
-                            <div class="movie-description__title">
-                                ${movie.title}
-                            </div>
-                            <div class="movie-description__body">
-                                <div class="movie-description__poster">
-                                    <div class="movie-desription__image"> 
-                                      <img src="https://image.tmdb.org/t/p/w500/${movie.backdrop_path}" alt="">
-                                    </div>
-                                    <div class="movie-description__overwiev">
-                                       ${movie.overview || 'Описание для фильма отсутствует'}
-                                    </div>
-                                </div>
-                                <div class="movie-descrption__info info-movie">
-                                <div class="info-movie__status"><span class="bold">Рейтинг:</span><span class="green-text">${movie.vote_average || 'Неизвестен'}</span></div>
-                                  <div class="info-movie__budget"><span class="bold">Бюджет: </span> <span class="green-text">${movie.budget ? movie.budget +' $' : 'Неизвестен'}</span> </div>
-                                  <div class="info-movie__revenue"><span class="bold">Сборы: </span> <span class="green-text">${movie.revenue ? movie.revenue +' $' : 'Неизвестны'}</span> </div>
-                                  <div class="info-movie__genre"><span class="bold">Жанры: </span><span class="green-text">${movie.genres.map((genre)=>genre.name).join(', ')}</span></div>
-                                  <div class="info-movie__company"><span class="bold">Киностудии: </span><span class="green-text">${movie.production_companies.map((company)=>company.name).join(', ')}</span></div>
-                                  <div class="info-movie__runtime"><span class="bold">Продложительность: </span><span class="green-text">${movie.runtime || 'Неизвестна'} мин. </span></div>
-                                  <div class="info-movie__release-date"><span class="bold">Дата релиза:</span><span class="green-text">${movie.release_date || 'Неизвестна'}</span></div>
-                                </div>
-                            </div>
-                            <div class="movie-decription__actors actors">
-                                <div class="actors__title">В ролях</div>
-                                <div class="actors__items">
-                                    <div class="actors__item actor">
-                                        <div class="actor__avatar">
-                                            <img src="https://image.tmdb.org/t/p/w200//fxeMrZswIPIWhipvdRrHOVuPlQY.jpg" alt="">
-                                        </div>
-                                        <div class="actor__info">
-                                            <div class="actor__name">
-                                                ФИО: Бенедикт Кумбербетч
-                                            </div>
-                                            <div class="actor__role">
-                                                Роль: ШЕРЛОК
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-    
                 </div>
                 <div class="search-alert">
                     <div class="search-alert__body">

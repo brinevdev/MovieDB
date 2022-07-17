@@ -62,8 +62,7 @@ searchBtn.addEventListener('click',(e)=>{
   })
 
 searchReturnBtn.addEventListener('click',()=>{
-    document.querySelector('.search-alert').style.transform = 'scale(0)'
-    initialSearch();
+    document.querySelector('.search-alert').style.top = '-100%'
   })
  
 menu.addEventListener('click',menuHandler);  
