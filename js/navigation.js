@@ -29,7 +29,7 @@ export function searchByTitle(title){
     .then(movies => {
         if (movies.results.length===0){
             document.querySelector('.movie__body').innerHTML = '';
-            document.querySelector('.search-alert').style.top= '50px'
+            document.querySelector('.search-alert').style.top= '250px'
         } else {
             document.querySelector('.search-alert').style.top= '-100%'
             showMovie(movies)

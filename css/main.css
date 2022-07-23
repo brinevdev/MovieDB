@@ -413,20 +413,20 @@ html, body {
   }
 }
 .search-alert {
+  display: flex;
   top: -100%;
   left: 50%;
   transform: translateX(-50%);
   transition: top 450ms;
-  position: absolute;
+  position: fixed;
   z-index: 2;
   background-color: #a5260a;
   color: #fff;
   padding: 10px 15px;
   margin: 10px 0;
   border-radius: 4px;
-  width: 500px;
-  margin-right: 10px;
-  height: 200px;
+  margin-right: 100px 0px 0px;
+  max-width: 450px;
 }
 .search-alert__body {
   font-size: 24px;
@@ -439,6 +439,19 @@ html, body {
   text-align: center;
 }
 
+@media (max-width: 996px) {
+  .search-alert {
+    left: 40%;
+    transform: translate(-50%, -50%);
+  }
+}
+@media (max-width: 768px) {
+  .search-alert {
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 90%;
+  }
+}
 .movie-description {
   padding: 0px 20px 20px;
   background-color: #2f2f2f;
