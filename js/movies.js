@@ -9,7 +9,10 @@ const IMAGEPATH = 'https://image.tmdb.org/t/p/w500/'
 export function showMovie(movies) {
     movieBody.innerHTML = `<div class="movies__items"> </div>`;
     const movieContainer = document.querySelector('.movies__items');
-    for (const movie of movies.results) {
+    const movieList = movies.results.filter((movie)=>{
+      return  movie.backdrop_path && movie.poster_path;
+    })
+    for (const movie of movieList) {
         const img =  movie.backdrop_path ? `${IMAGEPATH}${movie.poster_path}` : `./../images/movies/stockimage.jpg`;
         movieContainer.insertAdjacentHTML('beforeend',`
           <div class="movies__item movie" data-movie-id="${movie.id}">
